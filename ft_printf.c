@@ -18,14 +18,14 @@ int ft_check_pourcent(char c, va_list args)
     if (c == 'u')
         i += ft_putnbr_u(va_arg(args, unsigned long));
     if (c == 'x')
-        i += ft_print_hexa(va_arg(args, unsigned int), 0);
+        i += ft_print_hexa(va_arg(args, unsigned int), 0, &i);
     if (c == 'X')
-        i += ft_print_hexa(va_arg(args, unsigned int), 1);
+        i += ft_print_hexa(va_arg(args, unsigned int), 1, &i);
     if (c == '%')
         i += ft_putchar('%');
     else
         return i;
-    return i;
+    return (i + p);
 }
 
 unsigned long long    ft_putnbr_u(unsigned long long nb)

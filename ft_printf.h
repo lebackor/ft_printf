@@ -2,7 +2,7 @@
 # define FT_PRINTF_H
 #include "libft/libft.h"
 #include <stdio.h>
-int    ft_print_hexa(unsigned int nb, int a);
+int    ft_print_hexa(unsigned int nb, int a, int *count);
 int    ft_put_hexa_min(unsigned int nb);
 int    ft_put_hexa_maj(unsigned int nb);
 int ft_check_pourcent(char c, va_list args);

@@ -33,13 +33,9 @@ int    ft_put_hexa_maj(unsigned int nb)
         ft_putchar('F');
     return (1);
 }
-int    ft_print_hexa(unsigned int nb, int a)
+int    ft_print_hexa(unsigned int nb, int a, int *count)
 {
-	int i;
-    
-    i = 0;
-	/*if (nb < 0)
-        i = ft_pointer(nb);*/
+    (*count)++;
     if (nb >= 0 && nb < 16)
     {
         if (nb >= 0 && nb <= 9)
@@ -47,9 +43,9 @@ int    ft_print_hexa(unsigned int nb, int a)
         else
         {
             if (a == 0)
-                i += ft_put_hexa_min(nb);
+                ft_put_hexa_min(nb);
             else if (a == 1)
-                i += ft_put_hexa_maj(nb);
+                ft_put_hexa_maj(nb);
         }
     }
     else /* if (nb > 16)*/
@@ -57,7 +53,7 @@ int    ft_print_hexa(unsigned int nb, int a)
         ft_print_hexa(nb / 16, a);
 		ft_print_hexa(nb % 16, a);
 	}
-    return (i);
+    return (*count);
 }
 
 int ft_pointer(unsigned int nb)
