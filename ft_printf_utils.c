@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void    ft_put_hexa_min(unsigned int nb)
+int    ft_put_hexa_min(unsigned int nb)
 {
     if (nb == 10)
         ft_putchar('a');
@@ -14,9 +14,10 @@ void    ft_put_hexa_min(unsigned int nb)
         ft_putchar('e');
     else if (nb == 15)
         ft_putchar('f');
+    return (1);
 }
 
-void    ft_put_hexa_maj(unsigned int nb)
+int    ft_put_hexa_maj(unsigned int nb)
 {
     if (nb == 10)
         ft_putchar('A');
@@ -30,27 +31,30 @@ void    ft_put_hexa_maj(unsigned int nb)
         ft_putchar('E');
     else if (nb == 15)
         ft_putchar('F');
+    return (1);
 }
 int    ft_print_hexa(unsigned int nb, int a)
 {
 	int i;
+    
     i = 0;
-	if (nb >= 0 && nb < 16)
+	/*if (nb < 0)
+        i = ft_pointer(nb);*/
+    if (nb >= 0 && nb < 16)
     {
         if (nb >= 0 && nb <= 9)
             ft_putchar(nb + 48);
         else
         {
             if (a == 0)
-                ft_put_hexa_min(nb);
+                i += ft_put_hexa_min(nb);
             else if (a == 1)
-                ft_put_hexa_maj(nb);
+                i += ft_put_hexa_maj(nb);
         }
-        i++;
     }
-    else if (nb > 16)
+    else /* if (nb > 16)*/
     {
-		ft_print_hexa(nb / 16, a);
+        ft_print_hexa(nb / 16, a);
 		ft_print_hexa(nb % 16, a);
 	}
     return (i);
@@ -65,7 +69,7 @@ int ft_pointer(unsigned int nb)
     i += ft_print_hexa(nb, 0);
     return (i);
 }
-
+/*
 int ft_putnbr_count(int nb)
 {
     int i;
@@ -75,4 +79,4 @@ int ft_putnbr_count(int nb)
     i = ft_strlen(ft_itoa(nb));
         // printf("\nPUTNBR COUNT = %d\n", i);
     return (i);
-}
+}*/

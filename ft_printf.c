@@ -12,11 +12,11 @@ int ft_check_pourcent(char c, va_list args)
     if (c == 'p')
         i += ft_pointer(va_arg(args, unsigned int));
     if (c == 'd')
-        i += ft_putnbr_count(va_arg(args, int));
+        i += ft_putnbr(va_arg(args, int));
     if (c == 'i')
-        i += ft_putnbr_count(va_arg(args, int));
+        i += ft_putnbr(va_arg(args, int));
     if (c == 'u')
-        i += ft_putnbr_count_u(va_arg(args, unsigned long));
+        i += ft_putnbr_u(va_arg(args, unsigned long));
     if (c == 'x')
         i += ft_print_hexa(va_arg(args, unsigned int), 0);
     if (c == 'X')
@@ -28,8 +28,11 @@ int ft_check_pourcent(char c, va_list args)
     return i;
 }
 
-void    ft_putnbr_u(unsigned long nb)
+unsigned long long    ft_putnbr_u(unsigned long long nb)
 {
+    unsigned long i;
+
+    i = ft_count_nb(nb);
     if (nb < 0)
 	{
 		nb = 4294967296 - nb;
@@ -43,11 +46,11 @@ void    ft_putnbr_u(unsigned long nb)
 	else if (nb > 9)
 	{
 		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+        ft_putnbr(nb % 10);
 	}
-	return ;
+	return (i);
 }
-unsigned long ft_putnbr_count_u(unsigned long nb)
+/*unsigned long ft_putnbr_count_u(unsigned long nb)
 {    
     unsigned long i;
 
@@ -56,6 +59,21 @@ unsigned long ft_putnbr_count_u(unsigned long nb)
     i = (unsigned long)ft_strlen(ft_itoa((unsigned long)nb));
         // printf("\nPUTNBR COUNT = %d\n", i);
     return (i);
+}*/
+
+long long ft_count_nb(long long nb)
+{
+    long long i;
+
+    i = 0;
+    if (nb < 0)
+        i++;
+    while (nb / 10)
+    {
+        nb /= 10;
+        i++;
+    }
+    return (i +1);
 }
 int ft_printf(const char *str, ...)
 {
@@ -84,17 +102,20 @@ int ft_printf(const char *str, ...)
         i++;
    }
     va_end(args);
-    return (i);
+    return (k);
 }
-
 int main(int ac, char **av)
 {
     (void) ac;
+    (void) av;
     //int a;
   //  int ret_ft_printf;
   //  int ret_printf;
     //a = atoi(av[1]);
    // printf("\n%X\n", a);
-    ft_printf("= %d\n", ft_printf(" [%s -%s, jai %u] ", av[1], NULL, atoi(av[3])));
-    printf("= %d\n", printf(" [%s -%s, jai %u] ", av[1], NULL, atoi(av[3])));
+    ft_printf("= %u\n", ft_printf("%x/%x", atoi(av[1]), atoi(av[2])));
+    printf("= %u\n", printf("%x/%x", atoi(av[1]),  atoi(av[2])));
+  //  ft_printf(" = %d\n", ft_printf("%c", '0'));
+ //   printf("\n                           DIFF                       \n");
+ //   printf(" = %d\n",  printf("%c", '0'));
 }
