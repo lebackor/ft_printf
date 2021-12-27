@@ -1,11 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lebackor <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/12/27 18:17:49 by lebackor          #+#    #+#              #
+#    Updated: 2021/12/27 18:18:26 by lebackor         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS	=	ft_printf.c \
 			libft/ft_putchar.c \
 			libft/ft_putstr.c \
 			libft/ft_putnbr.c \
-			libft/ft_itoa.c \
-			libft/ft_strlen.c \
-			libft/ft_calloc.c \
-			libft/ft_memset.c \
 			ft_printf_utils.c \
 
 OBJS	=	${SRCS:.c=.o}
@@ -31,13 +39,12 @@ f:
 clean:
 		rm -f ${OBJS}
 
-fclean:
-		clean
+fclean:	clean
 		rm -f ${NAME}
-re:
-		fclean all
+
+:Wre:	fclean all
 
 bonus:
-		echo salut
+		
 	
 .PHONY: all clean fclean re
