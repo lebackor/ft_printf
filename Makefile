@@ -42,7 +42,7 @@ clean:
 fclean:	clean
 		rm -f ${NAME}
 
-:Wre:	fclean all
+re:	fclean all
 
 bonus:
 		
